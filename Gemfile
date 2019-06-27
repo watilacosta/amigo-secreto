@@ -73,3 +73,4 @@ gem 'material_icons'
 gem 'redis'
 gem 'sidekiq'
 gem "haml-rails", "~> 2.0"
+gem 'jquery-rails'
