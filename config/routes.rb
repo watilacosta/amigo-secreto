@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :campaigns, except: [:new] do
-    post 'raffle', on: :member # /campaigns/:id/raffle
-    # post 'raffle', on: :collection # ->  /campaigns/raffle
+    post 'raffle', on: :member # --> /campaigns/:id/raffle
+    # post 'raffle', on: :collection # -->  /campaigns/raffle
   end
 
   resources :members, only: [:create, :destroy, :update]
