@@ -4,7 +4,6 @@ $(document).on 'turbolinks:load', ->
 
   ################  ATUALIZANDO OS CAMPOS DA CAMPANHA ####################
   $('.update_campaign').on 'submit', (e) -> 
-    console.log(e)
     $.ajax e.target.action,
       type: 'PUT'
       dataType: 'json',
