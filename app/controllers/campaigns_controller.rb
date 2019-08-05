@@ -12,7 +12,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.new(campaign_params)
+    @campaign = Campaign.new(user: current_user, title: 'Título da Campanha', description: 'Descrição da campanha')
 
     respond_to do |format|
       if @campaign.save

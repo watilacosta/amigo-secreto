@@ -1,0 +1,66 @@
+.row.campaigns
+  .col.s8.offset-s2
+    %p.title Informações
+  .campaign
+    .row.cards
+      .col.s8.offset-s2
+        .card.horizontal
+          .card-content.col.s12
+            = form_for @campaign, url: {action: "update"}, html: {class: "col s12 update_campaign"} do |f|
+              .row
+                .row
+                  .col.s12.l4.input-field
+                    = f.text_field :title, 'data-length': "20"
+                    %label{:class => "#{(@campaign.title)? 'active' : ''}", :for => "title"} Título
+                  .col.s12.l3.input-field
+                    = f.date_field :event_date, class: 'datepicker'
+                    %label{:class => "#{(@campaign.event_date)? 'active' : ''}", :for => "title"}
+                  .col.s12.l2.input-field
+                    = f.text_field :event_hour
+                    %label{:class => "#{(@campaign.event_hour)? 'active' : ''}", :for => "title"} Hora
+                  .col.s12.l3.input-field
+                    = f.text_field :location, 'data-length': "20"
+                    %label{:class => "#{(@campaign.location)? 'active' : ''}", :for => "title"} Local
+                .row
+                  .col.s12.input-field
+                    = f.text_field :description, 'data-length': "150"
+                    %label{:class => "#{(@campaign.description)? 'active' : ''}", :for => "title"} Descrição
+    .col.s8.offset-s2
+      %p.title Membros
+    .row.cards.members
+      .col.s8.offset-s2
+        .card.horizontal
+          .card-content.col.s12
+            .member_list
+              - @campaign.members.each do |m|
+                .member{:id => "member_#{m.id}"}
+                  .row
+                    .col.s12.m5.input-field
+                      %input#name.validate{:type => "text", :value => "#{m.name}"}/
+                      %label.active{:for => "name"} Nome
+                    .col.s12.m5.input-field
+                      %input#email.validate{:type => "email", :value => "#{m.email}"}/
+                      %label.active{"data-error" => "Formato incorreto", :for => "email"} Email
+                    .col.s3.offset-s3.m1.input-field
+                      %i{:class => "material-icons icon #{(m.open)? 'opened' : ''}"} visibility
+                    .col.s3.m1.input-field
+                      %a.remove_member{:href => "#", :id => "#{m.id}"}
+                        %i.material-icons.icon delete
+            = form_for(Member.new) do |f|
+              .member
+                .row
+                  = f.hidden_field :campaign_id, value: @campaign.id
+                  .col.s12.m5.input-field
+                    = f.text_field :name, class: "validate"
+                    %label.active{:for => "name"} Nome
+                  .col.s12.m5.input-field
+                    = f.email_field :email, class: "validate"
+                    %label.active{"data-error" => "Formato incorreto", :for => "member[email]"} Email
+    .row.btn-actions
+      .col.s12.center
+        .col.s6.m3.offset-m3.l2.offset-l4
+          = form_for @campaign, method: 'delete', html: {class: 'remove_campaign'} do |f|
+            %button.waves-effect.waves-light.btn.grey{:type => "submit"} Remover
+        .col.s6.m3.l3
+          = form_tag(raffle_campaign_path(@campaign), method: 'post', class: 'raffle_campaign') do
+            %button.waves-effect.waves-light.btn.red{:type => "submit"} Sortear e enviar

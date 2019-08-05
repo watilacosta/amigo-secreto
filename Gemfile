@@ -74,3 +74,5 @@ gem 'redis'
 gem 'sidekiq'
 gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
+
+gem 'pry', '~> 0.12.2'
