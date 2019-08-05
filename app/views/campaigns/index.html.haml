@@ -1,0 +1,33 @@
+.row.campaigns
+  .col.s8.offset-s2
+    %p.title Campanhas
+  .row.cards
+    .col.s8.offset-s2
+      - @campaigns.each do |c|
+        .card.horizontal
+          .card-content.col.s12
+            .col.s12.l8.m12
+              .row
+                .col.s8.m9.l9
+                  %p.title= truncate(c.title, length: 30, omission: '...')
+                .col.s4.m2.l2
+                  %p.data= (c.event_date)? c.event_date.strftime("%d/%m/%y") : ''
+              .row
+                .col.s12.m12.l12
+                  %p.subtitle= truncate(c.description, length: 70, omission: '...')
+              .row.status
+                .col.s6.m6.l4.visibility
+                  %i.material-icons.visibility-icon visibility
+                  %span.visibility-text
+                    Vistos #{open_number(c)}
+                .col.s2.m2.offset-s4.l2.offset-l6
+                  %span{:class => "new badge #{(c.status == "pending")? 'orange' : ''}"}
+                    = (c.status == "pending")? 'Pendente' : 'Sorteado'
+            .col.l4.s12.m12.center.enter
+              .row
+                .col.s12
+                  = link_to 'Entrar', campaign_path(c), class: 'waves-effect waves-light btn grey'
+  .fixed-action-btn.campaigns-btn
+    = form_tag("/campaigns", method: "post") do
+      %button.btn-floating.btn-large.red.pulse{:type => "submit"}
+        %i.large.material-icons add

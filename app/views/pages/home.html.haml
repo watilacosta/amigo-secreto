@@ -1,2 +1,9 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.html.haml
+.row.home
+  .center
+    %h4.title Surpreenda no Amigo Secreto
+    %h5.subtitle Crie a sua brincadeira apenas com o nome e email dos seus amigos
+    %h5.subtitle2
+      Rápido, fácil e garantido
+      %i.material-icons.home-icon favorite
+    = form_tag("/campaigns", method: "post") do
+      = submit_tag("Criar Agora", class: "waves-effect waves-light btn home-button")

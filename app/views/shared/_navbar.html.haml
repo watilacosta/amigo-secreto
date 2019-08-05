@@ -1,0 +1,42 @@
+.navbar-fixed
+  %nav.top-nav
+    .nav-wrapper.col.s12
+      %a.brand-logo{:href => "/"}
+        %img.logo-img{:alt => "", :src => "/assets/logo.png"}/
+        %span.logo-title
+          Nosso Amigo Secreto
+      %a.button-collapse{"data-activates" => "side-bar", :href => "#"}
+        %i.material-icons menu
+      %ul.right.hide-on-med-and-down
+        - if current_user
+          %li
+            %a{:href => "/campaigns"} Campanhas
+          %li
+            %a{:href => "/users/edit"} Perfil
+          %li
+            = link_to('Sair', destroy_user_session_path, :method => :delete)
+        - else
+          %li
+            %a{:href => "/users/sign_in"} Entrar
+          %li
+            %a{:href => "/users/sign_up"} Criar Conta
+            
+%ul#side-bar.side-nav
+  - if current_user
+    %li
+      %a{:href => "/campaigns"} Campanhas
+    %li
+      %a{:href => "/users/edit"} Perfil
+    %li
+      .divider
+    %li
+      = link_to('Sair', destroy_user_session_path, :method => :delete)
+  - else
+    %li
+      %a{:href => "/users/sign_in"} Entrar
+    %li
+      .divider
+    %li
+      %a{:href => "/users/sign_up"} Criar Conta
+    %li
+      .divider

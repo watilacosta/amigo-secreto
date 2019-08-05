@@ -2,7 +2,11 @@ class CampaignsController < ApplicationController
   before_action :authenticate_user!
 
   before_action :set_campaign, only: [:show, :destroy, :update, :raffle]
+<<<<<<< HEAD
   before_action :is_owner?,    only: [:show, :destroy, :update, :raffle]
+=======
+  before_action :is_owner?, only: [:show, :destroy, :update, :raffle]
+>>>>>>> master
 
   def show
   end
@@ -12,7 +16,11 @@ class CampaignsController < ApplicationController
   end
 
   def create
+<<<<<<< HEAD
     @campaign = Campaign.new(campaign_params)
+=======
+    @campaign = Campaign.new(user: current_user, title: 'Título da Campanha', description: 'Descrição da campanha')
+>>>>>>> master
 
     respond_to do |format|
       if @campaign.save
@@ -41,7 +49,6 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # Sorteio do amigo secreto
   def raffle
     respond_to do |format|
       if @campaign.status != 'pending'
