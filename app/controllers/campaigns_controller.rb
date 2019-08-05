@@ -43,7 +43,7 @@ class CampaignsController < ApplicationController
 
   def raffle
     respond_to do |format|
-      if @campaign.status != "pending"
+      if @campaign.pending?
         format.json { render json: 'Já foi sorteada', status: :unprocessable_entity }
       elsif @campaign.members.count < 3
         format.json { render json: 'A campanha precisa de pelo menos 3 pessoas', status: :unprocessable_entity }
