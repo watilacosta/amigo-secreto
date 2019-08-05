@@ -14,6 +14,6 @@ class Campaign < ApplicationRecord
 
   # Quem está criando a campaign também é membro desta
   def set_member
-    self.members = << Member.create(name: self.user.name, email: self.user.email)
+    self.members << Member.create(name: self.user.name, email: self.user.email)
   end
 end
