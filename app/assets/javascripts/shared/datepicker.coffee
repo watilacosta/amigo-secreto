@@ -8,4 +8,5 @@ $(document).on 'turbolinks:load', ->
     closeOnSelect: true,
     format: 'dd/mm/yyyy'
   });
+  
   return

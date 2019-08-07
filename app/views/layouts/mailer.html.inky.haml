@@ -1,0 +1,49 @@
+%container.body-drip
+  %spacer{:size => "16"}
+  / <center>
+  %row
+    %columns{:large => "2"}
+    %columns.center{:large => "1"}
+      %img{:alt => "", :src => "http://localhost:3000/assets/logo.png"}/
+    %columns{:large => "8"}
+      %h4 Nosso Amigo Secreto
+  / </center>
+  %spacer{:size => "16"}
+  %row
+    %columns
+      %h4.text-center= @campaign.title
+      %p.text-center
+        %b= (@campaign.event_date)? "#{@campaign.event_date.strftime("%d/%m/%y")} | " : ''
+        %b= @campaign.location
+      %spacer{:size => "16"}
+      %p.text-center= @campaign.description
+  %hr/
+  %row
+    %columns
+      %spacer{:size => "4"}
+      %p.text-center
+        Olá #{@member.name}, o #{@campaign.user.name} criou uma campanha de amigo secreto no site Nosso Amigo Secreto e incluiu você. Logo a baixo voce pode saber com querm saiu.
+      %spacer{:size => "8"}
+      %p.text-center
+        Seu amigo secreto é: 
+        %b
+          %u= @friend.name
+      %spacer{:size => "8"}
+      %center
+        %button{:href => "http://onebitcode.com"} Crie sua campanha também
+  %wrapper.secondary
+    %spacer{:size => "16"}
+    %row
+      %h5.text-center Se conecte com a gente
+    %row
+      %columns{:large => "6"}
+        %button.facebook.expand{:href => "https://www.facebook.com/onebitcode/"} Facebook
+      %columns{:large => "6"}
+        %button.twitter.expand{:href => "https://twitter.com/onebitcode"} Twitter
+  %wrapper.secondary
+    %spacer{:size => "2"}
+    %row
+      %p.text-center
+        Um Projeto do
+        %a{:href => "http://onebitcode.com"} Bootcamp OneBitCode
+  %img{:height => "1", :src => "#{ActionMailer::Base.default_url_options[:host]}/members/#{@member.token}/opened", :width => "1"}/

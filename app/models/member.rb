@@ -5,7 +5,7 @@ class Member < ApplicationRecord
 
   def set_pixel
     self.open  = false
-    # Gera um token enquanto ele seja único, não exista
+    # Gera um token enquanto ele seja único ou seja não exista
     self.token = loop do
       random_token = SecureRandom.urlsafe_base64(nil, false)
       break random_token if not Member.exists?(token: random_token)

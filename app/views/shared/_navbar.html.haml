@@ -2,7 +2,7 @@
   %nav.top-nav
     .nav-wrapper.col.s12
       %a.brand-logo{:href => "/"}
-        %img.logo-img{:alt => "", :src => "/assets/logo.png"}/
+        = image_tag("logo.png", class: "logo-img")
         %span.logo-title
           Nosso Amigo Secreto
       %a.button-collapse{"data-activates" => "side-bar", :href => "#"}
