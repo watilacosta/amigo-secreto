@@ -76,3 +76,7 @@ gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
 
 gem 'pry', '~> 0.12.2'
+
+# TEMPLATE PARA EMAIL
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
